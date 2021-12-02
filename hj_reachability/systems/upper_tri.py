@@ -3,17 +3,15 @@ import jax.numpy as jnp
 from hj_reachability import dynamics
 from hj_reachability import sets
 
-class DetAir3d(dynamics.ControlAndDisturbanceAffineDynamics):
+class DoubleInt(dynamics.ControlAndDisturbanceAffineDynamics):
 
     def __init__(self,
                  range=5.,
                  max_u = 0.5,
-                 control_mode="max",
-                 disturbance_mode="min",
+                 control_mode="min",
+                 disturbance_mode="max",
                  control_space=None,
                  disturbance_space=None):
-        self.evader_speed = evader_speed
-        self.pursuer_speed = pursuer_speed
         if control_space is None:
             control_space = sets.Box(lo=jnp.array([-max_u]), hi=jnp.array([max_u]))
         if disturbance_space is None:
